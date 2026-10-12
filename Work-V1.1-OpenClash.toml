@@ -1,0 +1,423 @@
+# OpenClash WORK V1.1 | SubConverter-Extended remote external configuration
+# Date: 2026-10-12
+# Scope: company router only. Source nodes: private MiSub Work subscription URL.
+# This TOML contains NO subscription credentials or nodes.
+# V1.1 fixes:
+# (1) true A/B strategies are declared on custom_groups, no ineffective [Proxy Group].
+# (2) country fallback includes nodes of all airport sources, rather than Deep only.
+#     With a single provider, strict Deep -> YC -> others order is NOT guaranteed.
+#     No extra nested group is added in order to avoid complexity and health issues.
+# (3) default nonstandard port stays follow-rules, for manual rollback.
+# (4) source and region node pool is regex-dynamic; never promise fastest N.
+# IMPORTANT: provider tests are not SOCKS5 gateway performance tests.
+# Validate generated YAML strategy/use/filter and runtime OpenClash overlays BEFORE switching.
+version = 1
+
+[ruleset]
+enabled = true
+overwrite_original_rules = true
+update_ruleset_on_request = false
+
+
+[[rulesets]]
+group = "🟥 Adobe"
+ruleset = "[]GEOSITE,adobe"
+
+[[rulesets]]
+group = "DIRECT"
+ruleset = "[]GEOSITE,private"
+
+[[rulesets]]
+group = "DIRECT"
+ruleset = "[]GEOIP,private"
+
+[[rulesets]]
+group = "🤖 ChatGPT"
+ruleset = "[]GEOSITE,openai"
+
+[[rulesets]]
+group = "🧠 AI"
+ruleset = "[]GEOSITE,category-ai-!cn"
+
+[[rulesets]]
+group = "📘 Facebook"
+ruleset = "[]GEOSITE,facebook"
+
+[[rulesets]]
+group = "🎵 TikTok"
+ruleset = "[]GEOSITE,tiktok"
+
+[[rulesets]]
+group = "🎬 YouTube"
+ruleset = "[]GEOSITE,youtube"
+
+[[rulesets]]
+group = "📸 Instagram"
+ruleset = "[]GEOSITE,instagram"
+
+[[rulesets]]
+group = "🐦 X"
+ruleset = "[]GEOSITE,twitter"
+
+[[rulesets]]
+group = "📨 Telegram"
+ruleset = "[]GEOSITE,telegram"
+
+[[rulesets]]
+group = "↔️ TeamViewer"
+ruleset = "[]GEOSITE,teamviewer"
+
+[[rulesets]]
+group = "📦 Notion"
+ruleset = "[]GEOSITE,notion"
+
+[[rulesets]]
+group = "🧑‍💻 GitHub"
+ruleset = "[]GEOSITE,github"
+
+[[rulesets]]
+group = "☁️ Cloudflare"
+ruleset = "[]GEOSITE,cloudflare"
+
+[[rulesets]]
+group = "🎥 Netflix"
+ruleset = "[]GEOSITE,netflix"
+
+[[rulesets]]
+group = "🎮 Steam"
+ruleset = "[]GEOSITE,steam"
+
+[[rulesets]]
+group = "🪙 加密货币"
+ruleset = "[]GEOSITE,okx"
+
+[[rulesets]]
+group = "🪙 加密货币"
+ruleset = "[]GEOSITE,binance"
+
+[[rulesets]]
+group = "🪙 加密货币"
+ruleset = "[]GEOSITE,bybit"
+
+[[rulesets]]
+group = "🚝 测速工具"
+ruleset = "[]GEOSITE,category-speedtest"
+
+[[rulesets]]
+group = "🚀 手动选择"
+ruleset = "clash-classic:https://testingcf.jsdelivr.net/gh/Aethersailor/Custom_OpenClash_Rules@main/rule/Custom_Proxy_Classical.yaml,28800"
+
+[[rulesets]]
+group = "DIRECT"
+ruleset = "clash-classic:https://testingcf.jsdelivr.net/gh/Aethersailor/Custom_OpenClash_Rules@main/rule/Custom_Direct_Classical.yaml,28800"
+
+[[rulesets]]
+group = "DIRECT"
+ruleset = "[]GEOSITE,google-cn"
+
+[[rulesets]]
+group = "DIRECT"
+ruleset = "[]GEOSITE,cn"
+
+[[rulesets]]
+group = "DIRECT"
+ruleset = "[]GEOIP,cn"
+
+[[rulesets]]
+group = "DIRECT"
+ruleset = "[]GEOSITE,category-games"
+
+[[rulesets]]
+group = "DIRECT"
+ruleset = "[]GEOSITE,category-public-tracker"
+
+[[rulesets]]
+group = "🔎 Google"
+ruleset = "[]GEOSITE,google"
+
+[[rulesets]]
+group = "🪟 Microsoft"
+ruleset = "[]GEOSITE,microsoft"
+
+[[rulesets]]
+group = "🍎 Apple"
+ruleset = "[]GEOSITE,apple"
+
+[[rulesets]]
+group = "📞 即时通讯"
+ruleset = "[]GEOSITE,category-communication"
+
+[[rulesets]]
+group = "💬 社交媒体"
+ruleset = "[]GEOSITE,category-social-media-!cn"
+
+[[rulesets]]
+group = "🚀 手动选择"
+ruleset = "[]GEOSITE,gfw"
+
+[[rulesets]]
+group = "🔀 非标端口"
+ruleset = "clash-classic:https://testingcf.jsdelivr.net/gh/Aethersailor/Custom_OpenClash_Rules@main/rule/Custom_Port_Direct.yaml,28800"
+
+[[rulesets]]
+group = "🐟 漏网之鱼"
+ruleset = "[]FINAL"
+
+[[custom_groups]]
+name = "🤖 ChatGPT"
+type = "select"
+rule = ["[]🇺🇸 US 故障转移", "[]🔯 故障转移", "[]🇸🇬 SG 故障转移", "[]🇭🇰 HK 故障转移", "[]🇯🇵 JP 故障转移", "[]🇹🇼 TW 故障转移", "[]🇺🇸 US", "[]🇸🇬 SG", "[]🇯🇵 JP", "[]🇭🇰 HK", "[]🇹🇼 TW", "[]♻️ 自动选择", "[]🧊 冷门节点", "[]🧭 全部节点", "[]🌐 Default"]
+
+[[custom_groups]]
+name = "🧠 AI"
+type = "select"
+rule = ["[]🇺🇸 US 故障转移", "[]🔯 故障转移", "[]🇸🇬 SG 故障转移", "[]🇭🇰 HK 故障转移", "[]🇯🇵 JP 故障转移", "[]🇹🇼 TW 故障转移", "[]🇺🇸 US", "[]🇸🇬 SG", "[]🇯🇵 JP", "[]🇭🇰 HK", "[]🇹🇼 TW", "[]♻️ 自动选择", "[]🧊 冷门节点", "[]🧭 全部节点", "[]🌐 Default"]
+
+[[custom_groups]]
+name = "📘 Facebook"
+type = "select"
+rule = ["[]🇺🇸 US 故障转移", "[]🔯 故障转移", "[]🇸🇬 SG 故障转移", "[]🇭🇰 HK 故障转移", "[]🇯🇵 JP 故障转移", "[]🇹🇼 TW 故障转移", "[]🇺🇸 US", "[]🇸🇬 SG", "[]🇯🇵 JP", "[]🇭🇰 HK", "[]🇹🇼 TW", "[]♻️ 自动选择", "[]🧊 冷门节点", "[]🧭 全部节点", "[]🌐 Default"]
+
+[[custom_groups]]
+name = "🎵 TikTok"
+type = "select"
+rule = ["[]🇸🇬 SG", "[]🇺🇸 US 故障转移", "[]🔯 故障转移", "[]🇸🇬 SG 故障转移", "[]🇭🇰 HK 故障转移", "[]🇯🇵 JP 故障转移", "[]🇹🇼 TW 故障转移", "[]🇺🇸 US", "[]🇯🇵 JP", "[]🇭🇰 HK", "[]🇹🇼 TW", "[]♻️ 自动选择", "[]🧊 冷门节点", "[]🧭 全部节点", "[]🌐 Default"]
+
+[[custom_groups]]
+name = "📸 Instagram"
+type = "select"
+rule = ["[]🇺🇸 US 故障转移", "[]🔯 故障转移", "[]🇸🇬 SG 故障转移", "[]🇭🇰 HK 故障转移", "[]🇯🇵 JP 故障转移", "[]🇹🇼 TW 故障转移", "[]🇺🇸 US", "[]🇸🇬 SG", "[]🇯🇵 JP", "[]🇭🇰 HK", "[]🇹🇼 TW", "[]♻️ 自动选择", "[]🧊 冷门节点", "[]🧭 全部节点", "[]🌐 Default"]
+
+[[custom_groups]]
+name = "🎬 YouTube"
+type = "select"
+rule = ["[]🇸🇬 SG", "[]🔯 故障转移", "[]🇺🇸 US 故障转移", "[]🇸🇬 SG 故障转移", "[]🇭🇰 HK 故障转移", "[]🇯🇵 JP 故障转移", "[]🇹🇼 TW 故障转移", "[]🇺🇸 US", "[]🇯🇵 JP", "[]🇭🇰 HK", "[]🇹🇼 TW", "[]♻️ 自动选择", "[]🧊 冷门节点", "[]🧭 全部节点", "[]🌐 Default"]
+
+[[custom_groups]]
+name = "🐦 X"
+type = "select"
+rule = ["[]🇺🇸 US 故障转移", "[]🔯 故障转移", "[]🇸🇬 SG 故障转移", "[]🇭🇰 HK 故障转移", "[]🇯🇵 JP 故障转移", "[]🇹🇼 TW 故障转移", "[]🇺🇸 US", "[]🇸🇬 SG", "[]🇯🇵 JP", "[]🇭🇰 HK", "[]🇹🇼 TW", "[]♻️ 自动选择", "[]🧊 冷门节点", "[]🧭 全部节点", "[]🌐 Default"]
+
+[[custom_groups]]
+name = "📨 Telegram"
+type = "select"
+rule = ["[]♻️ 自动选择", "[]🔯 故障转移", "[]🇺🇸 US 故障转移", "[]🇸🇬 SG 故障转移", "[]🇭🇰 HK 故障转移", "[]🇯🇵 JP 故障转移", "[]🇹🇼 TW 故障转移", "[]🇺🇸 US", "[]🇸🇬 SG", "[]🇯🇵 JP", "[]🇭🇰 HK", "[]🇹🇼 TW", "[]🧊 冷门节点", "[]🧭 全部节点", "[]🌐 Default"]
+
+[[custom_groups]]
+name = "💬 社交媒体"
+type = "select"
+rule = ["[]🇺🇸 US 故障转移", "[]🔯 故障转移", "[]🇸🇬 SG 故障转移", "[]🇭🇰 HK 故障转移", "[]🇯🇵 JP 故障转移", "[]🇹🇼 TW 故障转移", "[]🇺🇸 US", "[]🇸🇬 SG", "[]🇯🇵 JP", "[]🇭🇰 HK", "[]🇹🇼 TW", "[]♻️ 自动选择", "[]🧊 冷门节点", "[]🧭 全部节点", "[]🌐 Default"]
+
+[[custom_groups]]
+name = "📞 即时通讯"
+type = "select"
+rule = ["[]🇸🇬 SG", "[]🔯 故障转移", "[]🇺🇸 US 故障转移", "[]🇸🇬 SG 故障转移", "[]🇭🇰 HK 故障转移", "[]🇯🇵 JP 故障转移", "[]🇹🇼 TW 故障转移", "[]🇺🇸 US", "[]🇯🇵 JP", "[]🇭🇰 HK", "[]🇹🇼 TW", "[]♻️ 自动选择", "[]🧊 冷门节点", "[]🧭 全部节点", "[]🌐 Default"]
+
+[[custom_groups]]
+name = "↔️ TeamViewer"
+type = "select"
+rule = ["[]♻️ 自动选择", "[]🔯 故障转移", "[]🇺🇸 US 故障转移", "[]🇸🇬 SG 故障转移", "[]🇭🇰 HK 故障转移", "[]🇯🇵 JP 故障转移", "[]🇹🇼 TW 故障转移", "[]🇺🇸 US", "[]🇸🇬 SG", "[]🇯🇵 JP", "[]🇭🇰 HK", "[]🇹🇼 TW", "[]🧊 冷门节点", "[]🧭 全部节点", "[]DIRECT", "[]🌐 Default"]
+
+[[custom_groups]]
+name = "📦 Notion"
+type = "select"
+rule = ["[]🇸🇬 SG", "[]🔯 故障转移", "[]🇺🇸 US 故障转移", "[]🇸🇬 SG 故障转移", "[]🇭🇰 HK 故障转移", "[]🇯🇵 JP 故障转移", "[]🇹🇼 TW 故障转移", "[]🇺🇸 US", "[]🇯🇵 JP", "[]🇭🇰 HK", "[]🇹🇼 TW", "[]♻️ 自动选择", "[]🧊 冷门节点", "[]🧭 全部节点", "[]DIRECT", "[]🌐 Default"]
+
+[[custom_groups]]
+name = "🧑‍💻 GitHub"
+type = "select"
+rule = ["[]♻️ 自动选择", "[]🔯 故障转移", "[]🇺🇸 US 故障转移", "[]🇸🇬 SG 故障转移", "[]🇭🇰 HK 故障转移", "[]🇯🇵 JP 故障转移", "[]🇹🇼 TW 故障转移", "[]🇺🇸 US", "[]🇸🇬 SG", "[]🇯🇵 JP", "[]🇭🇰 HK", "[]🇹🇼 TW", "[]🧊 冷门节点", "[]🧭 全部节点", "[]🌐 Default"]
+
+[[custom_groups]]
+name = "☁️ Cloudflare"
+type = "select"
+rule = ["[]♻️ 自动选择", "[]🔯 故障转移", "[]🇺🇸 US 故障转移", "[]🇸🇬 SG 故障转移", "[]🇭🇰 HK 故障转移", "[]🇯🇵 JP 故障转移", "[]🇹🇼 TW 故障转移", "[]🇺🇸 US", "[]🇸🇬 SG", "[]🇯🇵 JP", "[]🇭🇰 HK", "[]🇹🇼 TW", "[]🧊 冷门节点", "[]🧭 全部节点", "[]🌐 Default"]
+
+[[custom_groups]]
+name = "🔎 Google"
+type = "select"
+rule = ["[]♻️ 自动选择", "[]🔯 故障转移", "[]🇺🇸 US 故障转移", "[]🇸🇬 SG 故障转移", "[]🇭🇰 HK 故障转移", "[]🇯🇵 JP 故障转移", "[]🇹🇼 TW 故障转移", "[]🇺🇸 US", "[]🇸🇬 SG", "[]🇯🇵 JP", "[]🇭🇰 HK", "[]🇹🇼 TW", "[]🧊 冷门节点", "[]🧭 全部节点", "[]🌐 Default"]
+
+[[custom_groups]]
+name = "🪟 Microsoft"
+type = "select"
+rule = ["[]DIRECT", "[]🔯 故障转移", "[]🇺🇸 US 故障转移", "[]🇸🇬 SG 故障转移", "[]🇭🇰 HK 故障转移", "[]🇯🇵 JP 故障转移", "[]🇹🇼 TW 故障转移", "[]🇺🇸 US", "[]🇸🇬 SG", "[]🇯🇵 JP", "[]🇭🇰 HK", "[]🇹🇼 TW", "[]♻️ 自动选择", "[]🧊 冷门节点", "[]🧭 全部节点", "[]🌐 Default"]
+
+[[custom_groups]]
+name = "🍎 Apple"
+type = "select"
+rule = ["[]♻️ 自动选择", "[]🇭🇰 HK 故障转移", "[]🇯🇵 JP 故障转移", "[]🇹🇼 TW 故障转移", "[]🔯 故障转移", "[]🇺🇸 US 故障转移", "[]🇸🇬 SG 故障转移", "[]🇺🇸 US", "[]🇸🇬 SG", "[]🇯🇵 JP", "[]🇭🇰 HK", "[]🇹🇼 TW", "[]🧊 冷门节点", "[]🧭 全部节点", "[]DIRECT", "[]🌐 Default"]
+
+[[custom_groups]]
+name = "🎥 Netflix"
+type = "select"
+rule = ["[]🔯 故障转移", "[]🇺🇸 US 故障转移", "[]🇸🇬 SG 故障转移", "[]🇭🇰 HK 故障转移", "[]🇯🇵 JP 故障转移", "[]🇹🇼 TW 故障转移", "[]🇺🇸 US", "[]🇸🇬 SG", "[]🇯🇵 JP", "[]🇭🇰 HK", "[]🇹🇼 TW", "[]♻️ 自动选择", "[]🧊 冷门节点", "[]🧭 全部节点", "[]🌐 Default"]
+
+[[custom_groups]]
+name = "🎮 Steam"
+type = "select"
+rule = ["[]DIRECT", "[]🔯 故障转移", "[]🇺🇸 US 故障转移", "[]🇸🇬 SG 故障转移", "[]🇭🇰 HK 故障转移", "[]🇯🇵 JP 故障转移", "[]🇹🇼 TW 故障转移", "[]🇺🇸 US", "[]🇸🇬 SG", "[]🇯🇵 JP", "[]🇭🇰 HK", "[]🇹🇼 TW", "[]♻️ 自动选择", "[]🧊 冷门节点", "[]🧭 全部节点", "[]🌐 Default"]
+
+[[custom_groups]]
+name = "🚝 测速工具"
+type = "select"
+rule = ["[]DIRECT", "[]🔯 故障转移", "[]🇺🇸 US 故障转移", "[]🇸🇬 SG 故障转移", "[]🇭🇰 HK 故障转移", "[]🇯🇵 JP 故障转移", "[]🇹🇼 TW 故障转移", "[]🇺🇸 US", "[]🇸🇬 SG", "[]🇯🇵 JP", "[]🇭🇰 HK", "[]🇹🇼 TW", "[]♻️ 自动选择", "[]🧊 冷门节点", "[]🧭 全部节点", "[]🌐 Default"]
+
+[[custom_groups]]
+name = "🪙 加密货币"
+type = "select"
+rule = ["[]🇭🇰 HK", "[]🇭🇰 HK 故障转移", "[]🇯🇵 JP 故障转移", "[]🇹🇼 TW 故障转移", "[]🇸🇬 SG 故障转移", "[]🇺🇸 US 故障转移", "[]🔯 故障转移", "[]🇸🇬 SG", "[]🇺🇸 US", "[]🇯🇵 JP", "[]🇹🇼 TW", "[]♻️ 自动选择", "[]🧊 冷门节点", "[]🧭 全部节点", "[]DIRECT", "[]🌐 Default"]
+
+[[custom_groups]]
+name = "🟥 Adobe"
+type = "select"
+rule = ["[]♻️ 自动选择", "[]🔯 故障转移", "[]🇺🇸 US 故障转移", "[]🇸🇬 SG 故障转移", "[]🇭🇰 HK 故障转移", "[]🇯🇵 JP 故障转移", "[]🇹🇼 TW 故障转移", "[]🇺🇸 US", "[]🇸🇬 SG", "[]🇯🇵 JP", "[]🇭🇰 HK", "[]🇹🇼 TW", "[]🧊 冷门节点", "[]🧭 全部节点", "[]DIRECT", "[]REJECT", "[]🌐 Default"]
+
+[[custom_groups]]
+name = "🔀 非标端口"
+type = "select"
+# SAFE DEFAULT: follow-rules. Switching affects all nonstandard matched ports.
+rule = ["[]🐟 遵循规则", "[]⚖️ Work 精选轮询", "[]⚖️ Work 精选哈希", "[]DIRECT"]
+
+[[custom_groups]]
+name = "🐟 遵循规则"
+type = "select"
+rule = ["[]🐟 漏网之鱼"]
+
+[[custom_groups]]
+name = "🔯 故障转移"
+type = "fallback"
+rule = ["[]🇺🇸 US 故障转移", "[]🇸🇬 SG 故障转移", "[]🇯🇵 JP 故障转移", "[]🇭🇰 HK 故障转移", "[]🇹🇼 TW 故障转移"]
+url = "https://www.gstatic.com/generate_204"
+interval = 120
+
+[[custom_groups]]
+name = "🇺🇸 US 故障转移"
+type = "fallback"
+# Includes every airport in the region; order comes from Provider, NOT strict Deep/YC tier.
+rule = ["^(?!.*(?:Traffic\\s*:|Expire\\s*:|流量\\s*[:：]|到期\\s*[:：]|剩余\\s*[:：]|套餐\\s*[:：])).*(?:🇺🇸|美国|美國|(?:^|[^A-Za-z])US(?:[-_ ]?\\d+)?(?:[^A-Za-z]|$)|(?:^|[^A-Za-z])USA(?:[^A-Za-z]|$)|united[ _-]?states|los[ _-]?angeles|san[ _-]?jose|seattle|new[ _-]?york|(?:^|[^A-Za-z])LAX(?:[^A-Za-z]|$)|(?:^|[^A-Za-z])SJC(?:[^A-Za-z]|$)).*$"]
+url = "https://www.gstatic.com/generate_204"
+interval = 120
+
+[[custom_groups]]
+name = "🇸🇬 SG 故障转移"
+type = "fallback"
+# Includes every airport in the region; order comes from Provider, NOT strict Deep/YC tier.
+rule = ["^(?!.*(?:Traffic\\s*:|Expire\\s*:|流量\\s*[:：]|到期\\s*[:：]|剩余\\s*[:：]|套餐\\s*[:：])).*(?:🇸🇬|新加坡|狮城|獅城|(?:^|[^A-Za-z])SG(?:[-_ ]?\\d+)?(?:[^A-Za-z]|$)|singapore).*$"]
+url = "https://www.gstatic.com/generate_204"
+interval = 120
+
+[[custom_groups]]
+name = "🇯🇵 JP 故障转移"
+type = "fallback"
+# Includes every airport in the region; order comes from Provider, NOT strict Deep/YC tier.
+rule = ["^(?!.*(?:Traffic\\s*:|Expire\\s*:|流量\\s*[:：]|到期\\s*[:：]|剩余\\s*[:：]|套餐\\s*[:：])).*(?:🇯🇵|日本|(?:^|[^A-Za-z])JP(?:[-_ ]?\\d+)?(?:[^A-Za-z]|$)|japan|tokyo|osaka|(?:^|[^A-Za-z])NRT(?:[^A-Za-z]|$)|(?:^|[^A-Za-z])KIX(?:[^A-Za-z]|$)).*$"]
+url = "https://www.gstatic.com/generate_204"
+interval = 120
+
+[[custom_groups]]
+name = "🇭🇰 HK 故障转移"
+type = "fallback"
+# Includes every airport in the region; order comes from Provider, NOT strict Deep/YC tier.
+rule = ["^(?!.*(?:Traffic\\s*:|Expire\\s*:|流量\\s*[:：]|到期\\s*[:：]|剩余\\s*[:：]|套餐\\s*[:：])).*(?:🇭🇰|香港|(?:^|[^A-Za-z])HK(?:[-_ ]?\\d+)?(?:[^A-Za-z]|$)|hong[ _-]?kong|(?:^|[^A-Za-z])HKG(?:[^A-Za-z]|$)).*$"]
+url = "https://www.gstatic.com/generate_204"
+interval = 120
+
+[[custom_groups]]
+name = "🇹🇼 TW 故障转移"
+type = "fallback"
+# Includes every airport in the region; order comes from Provider, NOT strict Deep/YC tier.
+rule = ["^(?!.*(?:Traffic\\s*:|Expire\\s*:|流量\\s*[:：]|到期\\s*[:：]|剩余\\s*[:：]|套餐\\s*[:：])).*(?:🇹🇼|台湾|台灣|台北|(?:^|[^A-Za-z])TW(?:[-_ ]?\\d+)?(?:[^A-Za-z]|$)|taiwan|taipei|hinet|(?:^|[^A-Za-z])TPE(?:[^A-Za-z]|$)).*$"]
+url = "https://www.gstatic.com/generate_204"
+interval = 120
+
+[[custom_groups]]
+name = "♻️ 自动选择"
+type = "url-test"
+rule = ["^(?!.*(?:Traffic\\s*:|Expire\\s*:|流量\\s*[:：]|到期\\s*[:：]|剩余\\s*[:：]|套餐\\s*[:：])).+$"]
+url = "https://www.gstatic.com/generate_204"
+interval = 300
+tolerance = 100
+
+[[custom_groups]]
+name = "🇺🇸 US"
+type = "url-test"
+rule = ["^(?!.*(?:Traffic\\s*:|Expire\\s*:|流量\\s*[:：]|到期\\s*[:：]|剩余\\s*[:：]|套餐\\s*[:：])).*(?:🇺🇸|美国|美國|(?:^|[^A-Za-z])US(?:[-_ ]?\\d+)?(?:[^A-Za-z]|$)|(?:^|[^A-Za-z])USA(?:[^A-Za-z]|$)|united[ _-]?states|los[ _-]?angeles|san[ _-]?jose|seattle|new[ _-]?york|(?:^|[^A-Za-z])LAX(?:[^A-Za-z]|$)|(?:^|[^A-Za-z])SJC(?:[^A-Za-z]|$)).*"]
+url = "https://www.gstatic.com/generate_204"
+interval = 300
+tolerance = 100
+
+[[custom_groups]]
+name = "🇸🇬 SG"
+type = "url-test"
+rule = ["^(?!.*(?:Traffic\\s*:|Expire\\s*:|流量\\s*[:：]|到期\\s*[:：]|剩余\\s*[:：]|套餐\\s*[:：])).*(?:🇸🇬|新加坡|狮城|獅城|(?:^|[^A-Za-z])SG(?:[-_ ]?\\d+)?(?:[^A-Za-z]|$)|singapore).*"]
+url = "https://www.gstatic.com/generate_204"
+interval = 300
+tolerance = 100
+
+[[custom_groups]]
+name = "🇯🇵 JP"
+type = "url-test"
+rule = ["^(?!.*(?:Traffic\\s*:|Expire\\s*:|流量\\s*[:：]|到期\\s*[:：]|剩余\\s*[:：]|套餐\\s*[:：])).*(?:🇯🇵|日本|(?:^|[^A-Za-z])JP(?:[-_ ]?\\d+)?(?:[^A-Za-z]|$)|japan|tokyo|osaka|(?:^|[^A-Za-z])NRT(?:[^A-Za-z]|$)|(?:^|[^A-Za-z])KIX(?:[^A-Za-z]|$)).*"]
+url = "https://www.gstatic.com/generate_204"
+interval = 300
+tolerance = 100
+
+[[custom_groups]]
+name = "🇭🇰 HK"
+type = "url-test"
+rule = ["^(?!.*(?:Traffic\\s*:|Expire\\s*:|流量\\s*[:：]|到期\\s*[:：]|剩余\\s*[:：]|套餐\\s*[:：])).*(?:🇭🇰|香港|(?:^|[^A-Za-z])HK(?:[-_ ]?\\d+)?(?:[^A-Za-z]|$)|hong[ _-]?kong|(?:^|[^A-Za-z])HKG(?:[^A-Za-z]|$)).*"]
+url = "https://www.gstatic.com/generate_204"
+interval = 300
+tolerance = 100
+
+[[custom_groups]]
+name = "🇹🇼 TW"
+type = "url-test"
+rule = ["^(?!.*(?:Traffic\\s*:|Expire\\s*:|流量\\s*[:：]|到期\\s*[:：]|剩余\\s*[:：]|套餐\\s*[:：])).*(?:🇹🇼|台湾|台灣|台北|(?:^|[^A-Za-z])TW(?:[-_ ]?\\d+)?(?:[^A-Za-z]|$)|taiwan|taipei|hinet|(?:^|[^A-Za-z])TPE(?:[^A-Za-z]|$)).*$"]
+url = "https://www.gstatic.com/generate_204"
+interval = 300
+tolerance = 100
+
+[[custom_groups]]
+name = "🧊 冷门节点"
+type = "select"
+rule = ["^(?!.*(?:Traffic\\s*:|Expire\\s*:|流量\\s*[:：]|到期\\s*[:：]|剩余\\s*[:：]|套餐\\s*[:：]))(?!.*(?:(?:🇺🇸|美国|美國|(?:^|[^A-Za-z])US(?:[-_ ]?\\d+)?(?:[^A-Za-z]|$)|(?:^|[^A-Za-z])USA(?:[^A-Za-z]|$)|united[ _-]?states|los[ _-]?angeles|san[ _-]?jose|seattle|new[ _-]?york|(?:^|[^A-Za-z])LAX(?:[^A-Za-z]|$)|(?:^|[^A-Za-z])SJC(?:[^A-Za-z]|$))|(?:🇸🇬|新加坡|狮城|獅城|(?:^|[^A-Za-z])SG(?:[-_ ]?\\d+)?(?:[^A-Za-z]|$)|singapore)|(?:🇯🇵|日本|(?:^|[^A-Za-z])JP(?:[-_ ]?\\d+)?(?:[^A-Za-z]|$)|japan|tokyo|osaka|(?:^|[^A-Za-z])NRT(?:[^A-Za-z]|$)|(?:^|[^A-Za-z])KIX(?:[^A-Za-z]|$))|(?:🇭🇰|香港|(?:^|[^A-Za-z])HK(?:[-_ ]?\\d+)?(?:[^A-Za-z]|$)|hong[ _-]?kong|(?:^|[^A-Za-z])HKG(?:[^A-Za-z]|$))|(?:🇹🇼|台湾|台灣|台北|(?:^|[^A-Za-z])TW(?:[-_ ]?\\d+)?(?:[^A-Za-z]|$)|taiwan|taipei|hinet|(?:^|[^A-Za-z])TPE(?:[^A-Za-z]|$)))).+$"]
+
+[[custom_groups]]
+name = "🧭 全部节点"
+type = "select"
+rule = ["^(?!.*(?:Traffic\\s*:|Expire\\s*:|流量\\s*[:：]|到期\\s*[:：]|剩余\\s*[:：]|套餐\\s*[:：])).+$"]
+
+[[custom_groups]]
+name = "🚀 手动选择"
+type = "select"
+rule = ["[]🔯 故障转移", "[]♻️ 自动选择", "[]🇺🇸 US 故障转移", "[]🇸🇬 SG 故障转移", "[]🇭🇰 HK 故障转移", "[]🇯🇵 JP 故障转移", "[]🇹🇼 TW 故障转移", "[]🇺🇸 US", "[]🇸🇬 SG", "[]🇯🇵 JP", "[]🇭🇰 HK", "[]🇹🇼 TW", "[]🧊 冷门节点", "[]🧭 全部节点", "[]DIRECT"]
+
+[[custom_groups]]
+name = "🌐 Default"
+type = "select"
+rule = ["[]♻️ 自动选择", "[]🔯 故障转移", "[]🇺🇸 US 故障转移", "[]🇸🇬 SG 故障转移", "[]🇭🇰 HK 故障转移", "[]🇯🇵 JP 故障转移", "[]🇹🇼 TW 故障转移", "[]🇺🇸 US", "[]🇸🇬 SG", "[]🇯🇵 JP", "[]🇭🇰 HK", "[]🇹🇼 TW", "[]🧊 冷门节点", "[]🧭 全部节点", "[]DIRECT"]
+
+[[custom_groups]]
+name = "🐟 漏网之鱼"
+type = "select"
+rule = ["[]♻️ 自动选择", "[]🌐 Default", "[]🔯 故障转移", "[]DIRECT"]
+
+[[custom_groups]]
+name = "⚖️ Work 精选轮询"
+type = "load-balance"
+# Flat real-node pool by source and region; change based on measured performance.
+rule = ["(?i)^(?!.*(?:Traffic\\s*:|Expire\\s*:|流量\\s*[:：]|到期\\s*[:：]|剩余\\s*[:：]|套餐\\s*[:：]|重置|公告)).*(?:(?:🇺🇸|🇸🇬|🇭🇰|美国|美國|新加坡|香港).*\\b(?:Deep|YC2?)\\b|\\b(?:Deep|YC2?)\\b.*(?:🇺🇸|🇸🇬|🇭🇰|美国|美國|新加坡|香港)).*$"]
+url = "https://www.gstatic.com/generate_204"
+interval = 600
+strategy = "round-robin"
+
+[[custom_groups]]
+name = "⚖️ Work 精选哈希"
+type = "load-balance"
+# Flat real-node pool by source and region; change based on measured performance.
+rule = ["(?i)^(?!.*(?:Traffic\\s*:|Expire\\s*:|流量\\s*[:：]|到期\\s*[:：]|剩余\\s*[:：]|套餐\\s*[:：]|重置|公告)).*(?:(?:🇺🇸|🇸🇬|🇭🇰|美国|美國|新加坡|香港).*\\b(?:Deep|YC2?)\\b|\\b(?:Deep|YC2?)\\b.*(?:🇺🇸|🇸🇬|🇭🇰|美国|美國|新加坡|香港)).*$"]
+url = "https://www.gstatic.com/generate_204"
+interval = 600
+strategy = "consistent-hashing"
