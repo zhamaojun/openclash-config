@@ -1,5 +1,6 @@
-# OpenClash WORK V1.1 | SubConverter-Extended remote external configuration
+# OpenClash WORK V1.1.1 | SubConverter-Extended remote external configuration
 # Date: 2026-10-12
+# HOTFIX: external TOML requires [custom] table; old [ruleset] table was ignored.
 # Scope: company router only. Source nodes: private MiSub Work subscription URL.
 # This TOML contains NO subscription credentials or nodes.
 # V1.1 fixes:
@@ -13,10 +14,9 @@
 # Validate generated YAML strategy/use/filter and runtime OpenClash overlays BEFORE switching.
 version = 1
 
-[ruleset]
-enabled = true
+[custom]
+enable_rule_generator = true
 overwrite_original_rules = true
-update_ruleset_on_request = false
 
 
 [[rulesets]]
